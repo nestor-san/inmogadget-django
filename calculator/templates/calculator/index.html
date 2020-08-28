@@ -1,9 +1,9 @@
 {% block content %}
     <h1>Que quieres calcular?</h1>
-    <p>El precio final de un inmueble</p>
-    <p>El dinero que recibirá un cliente por la venta</p>
-    <p>El capital inicial que deberá aportar el cliente</p>
-    <p>La comisión de venta de la agencia</p>
-    <p>La comisión de venta del agente</p>
+    <a href="{% url 'calculator:precio_final' %}"><p>El precio final de un inmueble</p></a>
+    <a href="{% url 'calculator:neto_cliente' %}"><p>El dinero que recibirá un cliente por la venta</p></a>
+    <a href="{% url 'calculator:capital_inicial' %}"><p>El capital inicial que deberá aportar el cliente</p></a>
+    <a href="{% url 'calculator:comision_agencia' %}"><p>La comisión de venta de la agencia</p></a>
+    <a href="{% url 'calculator:comision_agente' %}"><p>La comisión de venta del agente</p></a>
 {% load static %}
 {% endblock %}
