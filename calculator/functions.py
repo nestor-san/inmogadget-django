@@ -8,7 +8,7 @@ def calcular_precio_final(precio_cliente, porcentaje_comision, includes_vat):
     precio_cliente = int(precio_cliente)
     porcentaje_comision = int(porcentaje_comision)
 
-    if includes_vat == 'includes_vat':
+    if includes_vat == 'vat_included':
         print(includes_vat)
         precio_final = precio_cliente
         comision_agencia_iva = precio_final * porcentaje_comision / 100

@@ -1,7 +1,5 @@
 {% load humanize %}
 <h1>Calculadora de precio final</h1>
-{{ request.POST }}
-<p>este es para testear el valor de inclues vat en POST: {{ testvat }}</p>
 <p>Los resultados están listos</p>
 <p>El cliente quiere recibir {{ request.POST.precio_cliente|floatformat:"0"|intcomma }} Euros, la comisión es del {{ request.POST.porcentaje_comision }} % 
 {% ifequal request.POST.includes_vat 'vat_excluded' %}
