@@ -1,11 +1,17 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
+from calculator import functions
 
 def index(request):
     return render(request, 'calculator/index.html')
 
 def precio_final(request):
-    return render(request, 'calculator/precio_final.html')
+    if request.method == "GET":
+        return render(request, 'calculator/precio_final.html')
+    else:
+        context = functions.calcular_precio_final(request.POST['precio_cliente'], 
+        request.POST['porcentaje_comision'], request.POST['includes_vat'])
+        return render(request, 'calculator/precio_final_result.html', {'context': context, 'testvat':request.POST['includes_vat']})
 
 def neto_cliente(request):
     return render(request, 'calculator/neto_cliente.html')

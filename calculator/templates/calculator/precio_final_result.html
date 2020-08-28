@@ -1,0 +1,17 @@
+{% load humanize %}
+<h1>Calculadora de precio final</h1>
+{{ request.POST }}
+<p>este es para testear el valor de inclues vat en POST: {{ testvat }}</p>
+<p>Los resultados están listos</p>
+<p>El cliente quiere recibir {{ request.POST.precio_cliente|floatformat:"0"|intcomma }} Euros, la comisión es del {{ request.POST.porcentaje_comision }} % 
+{% ifequal request.POST.includes_vat 'vat_excluded' %}
+más IVA.
+{% else%}
+incluyendo el IVA.
+{% endifequal %}
+</p>
+<p>El precio final es {{ context.0|floatformat:"0"|intcomma }} €.</p>
+<p>La comisión neta de la agencia es {{ context.1|floatformat:"0"|intcomma }} €.</p>
+<p>El IVA de la operación es {{ context.2|floatformat:"0"|intcomma }} €.</p>
+<p>La comisión de la agencia + IVA es {{ context.3|floatformat:"0"|intcomma }} €.</p>
+

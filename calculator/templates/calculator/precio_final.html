@@ -5,13 +5,13 @@
 <form method="POST">
 {% csrf_token %}
 <label for="precio_cliente">El cliente quiere recibir: </label>
-<input type="number" name="precio_cliente" id="precio_cliente"><br>
-<label for="comision_percent">El porcentaje de la comisión es:</label>
-<input type="number" name="comision_percent" id="comision_percent"><br>
+<input type="number" name="precio_cliente" id="precio_cliente" required><br>
+<label for="porcentaje_comision">El porcentaje de la comisión es:</label>
+<input type="number" name="porcentaje_comision" id="porcentaje_comision" required><br>
 <label for="includes_vat">Incluye IVA?</label>
-<input type="radio" name="includes_vat" id="includes_vat" value="vat_included">
+<input type="radio" name="includes_vat" id="includes_vat" value="vat_included" required>
 <label for="includes_vat">Si</label>
-<input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded">
+<input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded" required checked="checked">
 <label for="includes_vat">No</label><br>
 <input type="submit" value="Calcular">
 </form>
