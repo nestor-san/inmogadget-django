@@ -1,1 +1,27 @@
-Capital inicial
+<h1>Calculadora de Capital Inicial para comprar un inmueble</h1>
+<p>Esta calculadora ofrece una aproximacion al coste de la inversión inicial requerida para compra un inmueble. Se asume que el inmueble está situado en suelo urbanizable.</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="tipo_de_inmueble">¿Qué tipo de inmueble es?</label>
+    <input type="radio" name="tipo_de_inmueble" id="tipo_de_inmueble" value="vivienda_nueva" required>
+    <label for="tipo_de_inmueble">Vivienda nueva</label>
+    <input type="radio" name="tipo_de_inmueble" id="tipo_de_inmueble" value="vivienda_usada" required checked="checked">
+    <label for="includes_vat">Vivienda de segunda mano</label><br>
+    <label for="comprador_bonificado">¿Eres família numerosa, menor de 32 años o minusválido?</label>
+    <input type="radio" name="comprador_bonificado" id="comprador_bonificado" value="si" required>
+    <label for="tipo_de_inmueble">Si</label>
+    <input type="radio" name="comprador_bonificado" id="comprador_bonificado" value="no" required checked="checked">
+    <label for="includes_vat">No</label><br>
+    <label for="nivel_ingresos">¿El nivel de ingresos de tu unidad familiar es inferior de 30.000 Euros al año?</label>
+    <input type="radio" name="nivel_ingresos" id="nivel_ingresos" value="si" required>
+    <label for="tipo_de_inmueble">Si</label>
+    <input type="radio" name="nivel_ingresos" id="nivel_ingresos" value="no" required checked="checked">
+    <label for="includes_vat">No</label><br>
+    <label for="valor_inmueble">¿Cuál es el valor del inmueble que quieres comprar?</label>
+    <input type="number" name="valor_inmueble" id="valor_inmueble" required><br>
+    <input type="submit" value="Calcular">
+
+
+
+</form>

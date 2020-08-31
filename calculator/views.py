@@ -11,16 +11,31 @@ def precio_final(request):
     else:
         context = functions.calcular_precio_final(request.POST['precio_cliente'], 
         request.POST['porcentaje_comision'], request.POST['includes_vat'])
-        return render(request, 'calculator/precio_final_result.html', {'context': context, 'testvat':request.POST['includes_vat']})
+        return render(request, 'calculator/precio_final_result.html', {'context': context})
 
 def neto_cliente(request):
-    return render(request, 'calculator/neto_cliente.html')
+    if request.method == "GET":
+        return render(request, 'calculator/neto_cliente.html')
+    else:
+        context = functions.calcular_neto_cliente(request.POST['precio_final'], 
+        request.POST['porcentaje_comision'], request.POST['includes_vat'])
+        return render(request, 'calculator/neto_cliente_result.html', {'context': context})
+    
 
 def capital_inicial(request):
-    return render(request, 'calculator/capital_inicial.html')
+    if request.method == "GET":
+        return render(request, 'calculator/capital_inicial.html')
+    else:
+        valores = functions.calcular_capital_inicial(request.POST['tipo_de_inmueble'], request.POST['comprador_bonificado'], request.POST['nivel_ingresos'], int(request.POST['valor_inmueble']))
+        gastos = ['aportación del 20%', 'IVA (vivienda nueva) o ITP (vivienda usada)', 'Impuesto AJD-hipotecas', 'Gastos de notaría', 'Gestoría', 'Tasación', 'Comisión de apertura *', 'Seguro hogar**', 'Total']
+        context = zip(valores, gastos)
+        return render(request, 'calculator/capital_inicial_result.html', {'context': context})
 
 def comision_agencia(request):
-    return render(request, 'calculator/comision_agencia.html')
+    if request.method == "GET":
+        return render(request, 'calculator/comision_agencia.html')
+    else:
+        return render(request, 'calculator/comision_agencia_result.html')
 
 def comision_agente(request):
     return render(request, 'calculator/comision_agente.html')

@@ -1,1 +1,16 @@
-Este es el template del precio neto del cliente
+<h1>Calculadora del Precio Neto del cliente</h1>
+<p>Esta calculadora permite calcular la cantidad de dinero que recibirá el cliente si se realiza la venta en un determinado valor con un porcentaje de comision establecido.</p>
+
+<form method="POST">
+{% csrf_token %}
+<label for="precio_final">El precio final del inmueble es: </label>
+<input type="number" name="precio_final" id="precio_final" required><br>
+<label for="porcentaje_comision">El porcentaje de comisión de la Agencia es: </label>
+<input type="number" name="porcentaje_comision" id="porcentaje_comision" required><br>
+<label for="includes_vat">Incluye IVA?</label>
+<input type="radio" name="includes_vat" id="includes_vat" value="vat_included" required>
+<label for="includes_vat">Si</laber>
+<input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded" required checked="checked">
+<label for="includes_vat">No</label><br>
+<input type="submit" value="Calcular">
+</form>
