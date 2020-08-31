@@ -35,8 +35,17 @@ def comision_agencia(request):
     if request.method == "GET":
         return render(request, 'calculator/comision_agencia.html')
     else:
-        return render(request, 'calculator/comision_agencia_result.html')
+        context = functions.calcular_comision_agencia(int(request.POST['precio_inmueble']), int(request.POST['porcentaje_comision']), request.POST['includes_vat'])
+        return render(request, 'calculator/comision_agencia_result.html', {'context': context})
 
 def comision_agente(request):
-    return render(request, 'calculator/comision_agente.html')
+    if request.method == "GET":
+        return render(request, 'calculator/comision_agente.html')
+    else:
+        comision_agente_neta = functions.calcular_comision_agente(int(request.POST['precio_inmueble']), int(request.POST['porcentaje_comision']), 
+        request.POST['includes_vat'], int(request.POST['porcentaje_agente']))
+        comision_agente_iva = comision_agente_neta * 0.21
+        comision_agente_mas_iva = comision_agente_neta + comision_agente_iva
+        context = [comision_agente_neta, comision_agente_iva, comision_agente_mas_iva]
+        return render(request, 'calculator/comision_agente_result.html', {'context': context})
 

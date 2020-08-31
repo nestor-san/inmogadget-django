@@ -76,6 +76,22 @@ def calcular_capital_inicial(tipo_de_inmueble, comprador_bonificado, nivel_ingre
         total = pretotal + impuesto_transmisiones
         return aportacion_20_porciento, impuesto_transmisiones, impuesto_ajd, gastos_notaria, gestoria, tasacion, comision_de_apertura, seguro_hogar, total
 
+def calcular_comision_agencia(precio_inmueble, porcentaje_comision, includes_vat):
+    if includes_vat == 'vat_included':
+        comision_agencia = precio_inmueble * porcentaje_comision / 100
+        comision_neta_agencia = comision_agencia / 1.21
+        iva_comision = comision_agencia - comision_neta_agencia
+
+    else: 
+        comision_neta_agencia = precio_inmueble * porcentaje_comision / 100
+        iva_comision = comision_neta_agencia * 0.21
+        comision_agencia = comision_neta_agencia + iva_comision
+
+    return comision_neta_agencia, iva_comision, comision_agencia
+
+def calcular_comision_agente(precio_inmueble, porcentaje_comision, includes_vat, porcentaje_agente):
+    comision_neta_agencia = calcular_comision_agencia(precio_inmueble, porcentaje_comision, includes_vat)[0]
+    return comision_neta_agencia * porcentaje_agente / 100
 
     
         

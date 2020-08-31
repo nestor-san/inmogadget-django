@@ -1,1 +1,18 @@
-Comisión agente
+<h1>Calculadora de comisión del agente inmobiliario</h1>
+<p>Esta calculadora permite calcular los ingresos del agente inmobiliario para un inmueble</p>
+
+<form method='POST'>
+    {% csrf_token %}
+    <label for="precio_inmueble">El precio el inmueble es: </label>
+    <input type="number" name="precio_inmueble" id="precio_inmueble" required><br>
+    <label for="porcentaje_comision">El porcentaje de comisión de la agencia</label>
+    <input type="number" name="porcentaje_comision" id="porcentaje_comision" required><br>
+    <label for="includes_vat">Incluye IVA?</label>
+    <input type="radio" name="includes_vat" id="includes_vat" value="vat_included" required>
+    <label for="includes_vat">Si</laber>
+    <input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded" required checked="checked">
+    <label for="includes_vat">No</label><br>
+    <label for="porcentaje_agente">El porcentaje de venta y/o captación del agente es del: </label>
+    <input type="number" name="porcentaje_agente" id="porcentaje_agente"><br>
+    <input type="submit" value="Calcular">
+</form>

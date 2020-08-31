@@ -1,0 +1,13 @@
+{% load humanize %}
+<h1>Calculadora del la comisión de la agencia</h1>
+<p>Los resultados están listos</p>
+<p>El precio final del inmueble es {{ request.POST.precio_inmueble|floatformat:"0"|intcomma }} Euros, la comisión es del {{ request.POST.porcentaje_comision }} %
+    {% ifequal request.POST.includes_vat 'vat_excluded' %}
+    más IVA.
+    {% else%}
+    incluyendo el IVA.
+    {% endifequal %}
+</p>
+<p>La comisión neta de la agencia es: {{ context.0|floatformat:"0"|intcomma }} €.</p>
+<p>EL IVA de la operación es: {{ context.1|floatformat:"0"|intcomma }} €.</p>
+<p>La comisión de la agencia + IVA es: {{ context.2|floatformat:"0"|intcomma }} €.</p>
