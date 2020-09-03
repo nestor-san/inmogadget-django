@@ -2,7 +2,16 @@
 
 {% block content %}
 
-<h1>Calculadora de comisión de la agencia</h1>
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+        <h1 class="text-center">Calculadora de comisión de la agencia</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10 mx-auto">
 <p>Esta calculadora permite calcular los ingresos de la agencia inmobiliaria para un inmueble</p>
 
 <form method='POST'>
@@ -13,10 +22,11 @@
     <input type="number" name="porcentaje_comision" id="porcentaje_comision" required><br>
     <label for="includes_vat">Incluye IVA?</label>
     <input type="radio" name="includes_vat" id="includes_vat" value="vat_included" required>
-    <label for="includes_vat">Si</laber>
+    <label for="includes_vat">Si</label>
     <input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded" required checked="checked">
     <label for="includes_vat">No</label><br>
-    <input type="submit" value="Calcular">
+    <input type="submit" class="btn btn-primary" value="Calcular">
 </form>
-
+</div>
+</div>
 {% endblock %}

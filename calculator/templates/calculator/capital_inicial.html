@@ -2,7 +2,17 @@
 
 {% block content %}
 
-<h1>Calculadora de Capital Inicial para comprar un inmueble</h1>
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+        <h1 class="text-center">Calculadora de Capital Inicial para comprar un inmueble</h1>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10 mx-auto">
 <p>Esta calculadora ofrece una aproximacion al coste de la inversión inicial requerida para compra un inmueble. Se asume que el inmueble está situado en suelo urbanizable.</p>
 
 <form method="POST">
@@ -24,10 +34,9 @@
     <label for="includes_vat">No</label><br>
     <label for="valor_inmueble">¿Cuál es el valor del inmueble que quieres comprar?</label>
     <input type="number" name="valor_inmueble" id="valor_inmueble" required><br>
-    <input type="submit" value="Calcular">
-
-
-
+    <input type="submit" class="btn btn-primary" value="Calcular">
 </form>
+</div>
+</div>
 
 {% endblock %}
