@@ -1,9 +1,91 @@
+{% extends 'calculator/base.html' %}
+
 {% block content %}
-    <h1>Que quieres calcular?</h1>
-    <a href="{% url 'calculator:precio_final' %}"><p>El precio final de un inmueble</p></a>
-    <a href="{% url 'calculator:neto_cliente' %}"><p>El dinero que recibirá un cliente por la venta</p></a>
-    <a href="{% url 'calculator:capital_inicial' %}"><p>El capital inicial que deberá aportar el cliente</p></a>
-    <a href="{% url 'calculator:comision_agencia' %}"><p>La comisión de venta de la agencia</p></a>
-    <a href="{% url 'calculator:comision_agente' %}"><p>La comisión de venta del agente</p></a>
+
 {% load static %}
+
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+        <h1 class="text-center">¿Qué quieres calcular hoy?</h1>
+         </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+            <div class="card my-3" style="width: 18rem;">
+  
+                <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Precio Final</h5>
+                    </div>
+                  <p class="card-text text-justify">Calcula el precio final de un inmueble partiendo del dinero que quieren recibir los propietarios.</p>
+                  <div class="text-center">
+                  <a href="{% url 'calculator:precio_final' %}" class="btn btn-primary">Comenzar</a>
+                </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+            <div class="card my-3" style="width: 18rem;">
+  
+                <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Beneficio del Cliente</h5>
+                     </div>
+                  <p class="card-text text-justify">Calcula el dinero que recibiría un cliente si se realizara la venta en un determinado valor.</p>
+                  <div class="text-center"><a href="{% url 'calculator:neto_cliente' %}" class="btn btn-primary">Comenzar</a>
+                </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+            <div class="card my-3" style="width: 18rem;">
+  
+                <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Capital Inicial</h5>
+                    </div>
+                  <p class="card-text text-justify">Calcula el capital inicial que deberá abonar un cliente en el momento de comprar un inmueble.</p>
+                  <div class="text-center">
+                  <a href="{% url 'calculator:capital_inicial' %}" class="btn btn-primary">Comenzar</a>
+                </div>
+                </div>
+              </div>
+        </div>
+        
+        <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center">
+            <div class="card my-3" style="width: 18rem;">
+  
+                <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Comisión Agencia</h5>
+                    </div>
+                  <p class="card-text text-justify">Calcula la comisión de venta que recibirá la agencia por la venta de un inmueble.</p>
+                  <div class="text-center">
+                  <a href="{% url 'calculator:capital_inicial' %}" class="btn btn-primary">Comenzar</a>
+                </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-4 d-flex justify-content-center">
+            <div class="card my-3" style="width: 18rem;">
+  
+                <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Comisión Agente</h5>
+                    </div>
+                  <p class="card-text text-justify">Calcula la comisión de venta que recibirá el agente inmobiliario por la venta de un inmueble.</p>
+                  <div class="text-center">
+                  <a href="{% url 'calculator:capital_inicial' %}" class="btn btn-primary">Comenzar</a>
+                </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

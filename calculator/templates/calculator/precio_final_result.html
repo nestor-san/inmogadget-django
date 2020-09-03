@@ -1,5 +1,19 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
 {% load humanize %}
-<h1>Calculadora de precio final</h1>
+
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+
+<h1 class="text-center">Calculadora de precio final</h1>
+</div>
+</div>
+<div class="row">
+    <div class="col-10 mx-auto">
 <p>Los resultados están listos</p>
 <p>El cliente quiere recibir {{ request.POST.precio_cliente|floatformat:"0"|intcomma }} Euros, la comisión es del {{ request.POST.porcentaje_comision }} % 
 {% ifequal request.POST.includes_vat 'vat_excluded' %}
@@ -12,4 +26,7 @@ incluyendo el IVA.
 <p>La comisión neta de la agencia es {{ context.1|floatformat:"0"|intcomma }} €.</p>
 <p>El IVA de la operación es {{ context.2|floatformat:"0"|intcomma }} €.</p>
 <p>La comisión de la agencia + IVA es {{ context.3|floatformat:"0"|intcomma }} €.</p>
-
+<a href="{% url 'calculator:precio_final' %}"><button type="button" class="btn btn-primary" >Calcular de nuevo</button></a> 
+</div>
+</div>
+{% endblock %}

@@ -1,3 +1,7 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
 {% load humanize %}
 <h1>Calculadora del la comisión de la agencia</h1>
 <p>Los resultados están listos</p>
@@ -11,3 +15,5 @@
 <p>La comisión neta de la agencia es: {{ context.0|floatformat:"0"|intcomma }} €.</p>
 <p>EL IVA de la operación es: {{ context.1|floatformat:"0"|intcomma }} €.</p>
 <p>La comisión de la agencia + IVA es: {{ context.2|floatformat:"0"|intcomma }} €.</p>
+
+{% endblock %}

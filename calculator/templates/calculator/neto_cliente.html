@@ -1,4 +1,16 @@
-<h1>Calculadora del Precio Neto del cliente</h1>
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+
+<h1 class="text-center">Calculadora del Precio Neto del cliente</h1>
+</div>
+</div>
+<div class="row">
+    <div class="col-10 mx-auto">
 <p>Esta calculadora permite calcular la cantidad de dinero que recibirá el cliente si se realiza la venta en un determinado valor con un porcentaje de comision establecido.</p>
 
 <form method="POST">
@@ -14,3 +26,6 @@
 <label for="includes_vat">No</label><br>
 <input type="submit" value="Calcular">
 </form>
+</div>
+</div>
+{% endblock %}

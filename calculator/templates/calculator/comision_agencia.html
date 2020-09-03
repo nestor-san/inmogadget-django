@@ -1,3 +1,7 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
 <h1>Calculadora de comisión de la agencia</h1>
 <p>Esta calculadora permite calcular los ingresos de la agencia inmobiliaria para un inmueble</p>
 
@@ -14,3 +18,5 @@
     <label for="includes_vat">No</label><br>
     <input type="submit" value="Calcular">
 </form>
+
+{% endblock %}

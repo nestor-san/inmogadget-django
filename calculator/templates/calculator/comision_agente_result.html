@@ -1,4 +1,9 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
 {% load humanize %}
+
 <h1>Calculadora de comisión del agente inmobiliario</h1>
 <p>Los resultados están listos</p>
 <p>El precio del inmueble es {{ request.POST.precio_inmueble}}, la comisión de la agencia es del {{ request.POST.porcentaje_comision }} %
@@ -10,3 +15,5 @@
 <p>La comisión neta del agente es de {{ context.0|floatformat:"0"|intcomma}} €.</p>    
 <p>El IVA de la comisión el agente es de {{ context.1|floatformat:"0"|intcomma}} €.</p>    
 <p>La comisión del agente + IVA es de {{ context.2|floatformat:"0"|intcomma}} €.</p>    
+
+{% endblock %}

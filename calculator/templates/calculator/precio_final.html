@@ -1,17 +1,37 @@
-<h1>Calculadora de Precio Final</h1>
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+        <h1 class="text-center">Calculadora de Precio Final</h1>
+         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-10 mx-auto">
 <p>Esta calculadora permite calcular el precio de venta de un inmueble a partir del dinero que quieren recibir los propietarios</p>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+
 
 <form method="POST">
 {% csrf_token %}
 <label for="precio_cliente">El cliente quiere recibir: </label>
-<input type="number" name="precio_cliente" id="precio_cliente" required><br>
+<input type="number" name="precio_cliente" id="precio_cliente" required style="width: 11em"><br>
 <label for="porcentaje_comision">El porcentaje de la comisión es:</label>
-<input type="number" name="porcentaje_comision" id="porcentaje_comision" required><br>
+<input type="number" name="porcentaje_comision" id="porcentaje_comision" required style="width: 7em"><br>
 <label for="includes_vat">Incluye IVA?</label>
 <input type="radio" name="includes_vat" id="includes_vat" value="vat_included" required>
 <label for="includes_vat">Si</label>
 <input type="radio" name="includes_vat" id="includes_vat" value="vat_excluded" required checked="checked">
 <label for="includes_vat">No</label><br>
-<input type="submit" value="Calcular">
+<input type="submit" class="btn btn-primary" value="Calcular">
 </form>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,14 +1,20 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
+{% load humanize %}
 <h1>Calculadora de Capital Inicial para comprar un inmueble</h1>
 <p>Los resultados están listos, agarrate fuerte!</p>
-<p>Ten en cuenta que estos resultados están basados en criterios "standard" y pueden variar ligeramente según tu comunidad autónoma o el profesional que te contrates.</p>
+<p>Ten en cuenta que estos resultados están basados en valores medios y pueden variar ligeramente según tu comunidad autónoma o el profesional que te contrates.</p>
 <table>
     {% for items in context %}
     <tr>
         <td>{{items.1}}</td>
-        <td>{{items.0}}</td>
+        <td>{{items.0|floatformat:"0"|intcomma}} €</td>
     </tr>
     {% endfor %}
 </table>
 
-<p>*La comisión de apertura de la hipoteca es posible financiarla y pagarla dentro de los plazos de la hipoteca</p>
-<p>**El seguro de hogar puede estar incluído en el prestamo de la hipoteca</p>
+<p>*La comisión de apertura de la hipoteca y el seguro de hogar es posible que se pueda financiar y pagar dentro de los plazos de la hipoteca, por lo que el importe total se podría reducir ligeramente.</p>
+
+{% endblock %}

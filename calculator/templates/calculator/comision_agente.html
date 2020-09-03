@@ -1,3 +1,7 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
 <h1>Calculadora de comisión del agente inmobiliario</h1>
 <p>Esta calculadora permite calcular los ingresos del agente inmobiliario para un inmueble</p>
 
@@ -16,3 +20,5 @@
     <input type="number" name="porcentaje_agente" id="porcentaje_agente"><br>
     <input type="submit" value="Calcular">
 </form>
+
+{% endblock %}
