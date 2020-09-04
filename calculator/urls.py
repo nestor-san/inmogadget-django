@@ -10,4 +10,5 @@ urlpatterns = [
     path('capital_inicial/', views.capital_inicial, name='capital_inicial'),
     path('comision_agencia/', views.comision_agencia, name='comision_agencia'),
     path('comision_agente/', views.comision_agente, name='comision_agente'),
+    path('gastos_vendedor/', views.gastos_vendedor, name='gastos_vendedor'),
 ]

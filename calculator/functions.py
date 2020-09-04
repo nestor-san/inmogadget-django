@@ -1,6 +1,7 @@
 """
 This document contains the functions used by the calculators
 """
+import calculator.data
 
 #Función usada para calcular el precio final de un inmueble
 
@@ -92,6 +93,45 @@ def calcular_comision_agencia(precio_inmueble, porcentaje_comision, includes_vat
 def calcular_comision_agente(precio_inmueble, porcentaje_comision, includes_vat, porcentaje_agente):
     comision_neta_agencia = calcular_comision_agencia(precio_inmueble, porcentaje_comision, includes_vat)[0]
     return comision_neta_agencia * porcentaje_agente / 100
+
+def calcular_plusvalua_municipal(municipio, ano_adquisicion, valor_adquisicion, ano_venta, valor_venta, valor_catastral):
+    if (valor_venta <= valor_adquisicion):
+        return 0
+    else:
+        anos_propiedad = ano_venta - ano_adquisicion
+        if (anos_propiedad <= 5):
+            ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['1 a 5']/100
+            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['1 a 5']/100
+            return gravamen
+        elif (anos_propiedad <= 10):
+            ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['6 a 10']/100
+            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['6 a 10']/100
+            return gravamen
+        elif (anos_propiedad <= 15):
+            ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['11 a 15']/100
+            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['11 a 15']/100
+            return gravamen
+        else:
+            ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['16 a 20']/100
+            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['16 a 20']/100
+            return gravamen
+
+def calcular_plusvalua_estatal(exempto):
+    pass
+
+
+        
+        
+
+
+        
+
+
+        
+        
+        
+        
+        
 
     
         

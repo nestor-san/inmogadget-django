@@ -49,3 +49,10 @@ def comision_agente(request):
         context = [comision_agente_neta, comision_agente_iva, comision_agente_mas_iva]
         return render(request, 'calculator/comision_agente_result.html', {'context': context})
 
+def gastos_vendedor(request):
+    if request.method == "GET":
+        return render(request, 'calculator/gastos_vendedor.html')
+    else:
+        
+        return render(request, 'calculator/gastos_vendedor_result.html')
+

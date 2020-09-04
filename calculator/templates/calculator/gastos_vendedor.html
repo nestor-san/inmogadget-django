@@ -1,0 +1,69 @@
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+        <h1 class="text-center">Calculadora de los gastos del vendedor</h1>
+         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-10 mx-auto">
+<p>Esta calculadora permite calcular los gastos que deberá abonar el propietario en el momento de la venta de un inmueble, según determinadas circunstancias.</p>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="municipio">El municipio del inmueble: </label>
+    <select id="municipio" name="municipio">
+        <option value="vilanova">Vilanova</option>
+        <option value="sitges">Sitges</option>
+        <option value="santpere">Sant Pere De Ribes</option>
+        <option value="olivella">Olivella</option>
+        <option value="cubelles">Cubelles</option>
+    </select><br>
+
+
+
+    <label for="año_de_adquisicion">Año de adquisición del inmueble: </label>
+    <input type="number" name="año_de_adquisicion" id="año_de_adquisicion" required style="width: 11em"><br>
+    <label for="valor_de_adquisicion">Valor de adquisición del inmueble en Euros: </label>
+    <input type="number" name="valor_de_adquisicion" id="valor_de_adquisicion" required style="width: 11em"><br>
+
+    <label for="año_de_venta">Año de venta del inmueble: </label>
+    <input type="number" name="año_de_venta" id="año_de_venta" required style="width: 11em"><br>
+    <label for="valor_de_venta">Valor de venta del inmueble en Euros: </label>
+    <input type="number" name="valor_de_venta" id="valor_de_venta" required style="width: 11em"><br>
+
+    <label for="inversiones">Se han realizado reformas o se han incurrido en gastos por el inmueble. Especifique el valor: </label>
+    <input type="number" name="inversiones" id="inversiones" required style="width: 11em"><br>
+
+    <label for="rendimiento">Ha obtenido un rendimiento económico del piso como un alquiler. Especifique la ganancia: </label>
+    <input type="number" name="rendimiento" id="rendimiento" required style="width: 11em"><br>
+
+    <label for="valor_catastral">Valor catastral del suelo que figura en el IBI en el año de la venta: </label>
+    <input type="number" name="valor_catastral" id="valor_catastral" required style="width: 11em"><br>
+
+    <label for="edad_vendedor">¿Tiene el vendedor más de 65 años?</label>
+    <input type="radio" name="edad_vendedor" id="edad_vendedor" value="senior" required>
+    <label for="senior">Si</label>
+    <input type="radio" name="edad_vendedor" id="edad_vendedor" value="joven" required checked="checked">
+    <label for="joven">No</label><br>
+
+    <label for="vender_2_años">¿Destinará el vendedor el dinero de la venta a la compra de una vivienda antes de 2 años?</label>
+    <input type="radio" name="vender_2_años" id="vender_2_años" value="vender_2_años" required checked="checked">
+    <label for="vender_2_años">Si</label>
+    <input type="radio" name="vender_2_años" id="vender_2_años" value="no_vender_2_años" required>
+    <label for="no_vender_2_años">No</label><br>
+
+    <input type="submit" class="btn btn-primary" value="Calcular">
+
+    </form>
+    </div>
+    </div>
+
+
+{% endblock %}
