@@ -53,6 +53,9 @@ def gastos_vendedor(request):
     if request.method == "GET":
         return render(request, 'calculator/gastos_vendedor.html')
     else:
-        
-        return render(request, 'calculator/gastos_vendedor_result.html')
+        plusvalua_municipal = functions.calcular_plusvalua_municipal(request.POST['municipio'], int(request.POST['año_de_adquisicion']), int(request.POST['valor_de_adquisicion']), int(request.POST['año_de_venta']), int(request.POST['valor_de_venta']), int(request.POST['valor_catastral']))
+        plusvalua_IRPF = functions.calcular_plusvalua_estatal(int(request.POST['valor_de_adquisicion']), int(request.POST['valor_de_venta']), int(request.POST['inversiones']), int(request.POST['rendimiento']), request.POST['edad_vendedor'], request.POST['vender_2_años'])
+        total_gastos = plusvalua_municipal + plusvalua_IRPF
+        context = [plusvalua_municipal, plusvalua_IRPF, total_gastos]
+        return render(request, 'calculator/gastos_vendedor_result.html', {'context' : context})
 

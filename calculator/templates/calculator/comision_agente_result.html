@@ -21,9 +21,11 @@
     {% else%}
     incluyendo el IVA.
     {% endifequal %} y la comisión del agente es del {{ request.POST.porcentaje_agente }} %.</p>
+<div class="alert alert-primary">    
 <p>La comisión neta del agente es de {{ context.0|floatformat:"0"|intcomma}} €.</p>    
 <p>El IVA de la comisión del agente es de {{ context.1|floatformat:"0"|intcomma}} €.</p>    
 <p>La comisión del agente + IVA es de {{ context.2|floatformat:"0"|intcomma}} €.</p>    
+</div>
 <a href="{% url 'calculator:comision_agente' %}"><button type="button" class="btn btn-primary" >Calcular de nuevo</button></a> 
 </div>
 </div>

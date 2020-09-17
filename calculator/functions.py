@@ -96,42 +96,40 @@ def calcular_comision_agente(precio_inmueble, porcentaje_comision, includes_vat,
 
 def calcular_plusvalua_municipal(municipio, ano_adquisicion, valor_adquisicion, ano_venta, valor_venta, valor_catastral):
     if (valor_venta <= valor_adquisicion):
-        return 0
+        return 0, '0 Euros (no hay ganancias patrimoniales)', 'y no se aplican tasas'
     else:
         anos_propiedad = ano_venta - ano_adquisicion
         if (anos_propiedad <= 5):
             ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['1 a 5']/100
-            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['1 a 5']/100
-            return gravamen
+            tasas = calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['1 a 5']
+            gravamen = ganancia * tasas/100
+            return gravamen, ganancia, tasas
         elif (anos_propiedad <= 10):
             ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['6 a 10']/100
-            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['6 a 10']/100
-            return gravamen
+            tasas = calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['6 a 10']
+            gravamen = ganancia * tasas/100
+            return gravamen, ganancia, tasas
         elif (anos_propiedad <= 15):
             ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['11 a 15']/100
-            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['11 a 15']/100
-            return gravamen
+            tasas = calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['11 a 15']
+            gravamen = ganancia * tasas/100
+            return gravamen, ganancia, tasas
         else:
             ganancia = anos_propiedad * valor_catastral * calculator.data.impuestos_municipales[municipio]['tases']['plusvalua']['16 a 20']/100
-            gravamen = ganancia * calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['16 a 20']/100
-            return gravamen
+            tasas = calculator.data.impuestos_municipales[municipio]['tases']['gravamen']['16 a 20']
+            gravamen = ganancia * tasas/100
+            return gravamen, ganancia, tasas
 
-def calcular_plusvalua_estatal(exempto):
-    pass
-
-
-        
-        
-
-
-        
-
-
-        
-        
-        
-        
-        
-
-    
+def calcular_plusvalua_estatal(valor_adquisicion, valor_venta, reformas, beneficios, anos, reinversion):
+    impuestos_adquisicion = valor_adquisicion * 0.1
+    if ((valor_adquisicion + reformas + impuestos_adquisicion) >= (valor_venta + beneficios) or anos=='senior' or reinversion=='vender_2_años'): 
+        return 0, 'Excenta por ser mayor de 65 años o reinvertir el capital de la venta.'
+    else:
+        valor_tributable = (valor_venta + beneficios) - (valor_adquisicion + reformas + impuestos_adquisicion)
+        if (valor_tributable <= 6000):
+            return valor_tributable * 0.19, valor_tributable
+        elif (valor_tributable <= 50000):
+            return 6000*0.19 + (valor_tributable - 6000) * 0.21, valor_tributable
+        else: 
+            return 6000*0.19 + 44000 * 0.21 + (valor_tributable - 50000) * 0.23, valor_tributable
         

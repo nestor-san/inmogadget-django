@@ -1,1 +1,56 @@
-Este es el template de gastos del comprador result
+{% extends 'calculator/base.html' %}
+
+{% block content %}
+
+{% load humanize %}
+<div class="container">
+
+    <div class="row my-5">
+        <div class="col">
+
+<h1 class="text-center">Calculadora de Gastos para Vender un inmueble</h1>
+</div>
+</div>
+<div class="row">
+    <div class="col-10 mx-auto">
+<p class="alert alert-success">Los resultados están listos, agarrate fuerte!</p>
+<p>Ten en cuenta que estos resultados están basados en valores medios y pueden variar ligeramente según tu comunidad autónoma o el profesional que te contrates.</p>
+<p>El precio final de venta del inmueble es {{ request.POST.valor_de_venta|floatformat:"0"|intcomma }} Euros y se ha obtenido un beneficio de {{ request.POST.rendimiento|floatformat:"0"|intcomma }} Euros durante los años en que se poseyó el piso.</p>
+<p>El precio de compra del inmueble fue de {{ request.POST.valor_de_adquisicion|floatformat:"0"|intcomma }} Euros y se han invertido {{ request.POST.inversiones|floatformat:"0"|intcomma }} Euros, además del pago de los impuestos de compra correspondientes.</p>
+
+
+<div class="alert alert-primary">
+<p>El importe de la plusvalía municipal es de {{ context.0.0|floatformat:"0"|intcomma }} Euros.</p>
+<p>El importe a pagar en concepto de IRPF es de {{ context.1.0|floatformat:"0"|intcomma }} Euros.</p>
+<p>Por lo tanto, los gastos totales del vendedor son de {{ context.2.0|floatformat:"0"|intcomma }} Euros *.</p>
+<p>*En caso de tener que cancelar una hipoteca al vender el piso, también se pueden aplicar gastos de cancelación de hipoteca (incluyendo notaría y gestoría).</p>
+</div>
+
+<div>
+    <h2>Calculos Detallados</h2>
+    <h4>Plusvalía Municipal</h4>
+    <p>Se considera un impuesto sobre el incremento de valor del terreno en que el inmueble está edificado. Su cálculo se realiza a partir del importe que el ayuntamiento considera que vale el terreno (multiplicando un porcentaje establecido por la cantidad de años que se poseyó el inmueble por un tipo impositivo). Estos valores pueden variar entre diferentes municipios.</p>
+    
+    {% ifequal context.0.0 0 %}
+    <p>Este inmueble está excento de pagar la plusvalúa municipal ya que la venta se ha realizado por un valor inferior al precio de compra. Por lo tanto, se considera que no hay ganancias patrimoniales y por lo tanto no hay que pagar la plusválua municipal.</p>
+    {% else%}
+    <p>En este inmueble, el ayuntamiento considera que el incremento del valor del terreno es de {{ context.0.1|floatformat:"0"|intcomma }} Euros y el porcentaje de impuesto aplicable es del {{ context.0.2 }}. Por lo tanto, el total a pagar al ayuntamiento del municipio por el concepto de plusvalía municipal es de  {{ context.0.0|floatformat:"0"|intcomma }} Euros.</p>
+    {% endifequal %}
+
+    <h4>IRPF</h4>
+    <p>Se considera un impuesto sobre la ganancia en la compra-venta del inmueble. Se calcula sumando el precio de venta y los rendimientos económicos obtenidos (como un alquiler) y restando el precio de compra, los impuestos y las inversiones realizadas (una reforma, por ejemplo). Los primeros 6.000 Euros de beneficio tributan al porcentaje de 19%, hasta 50.000 Euros se tributa al 21% y partir de esta cantidad se tributa al 23%.</p>
+    
+    {% ifequal context.1.0 0 %}
+    <p>El vendedor está excento de pagar el impuesto de IRPF ya que la venta se ha realizado por un valor inferior al precio de compra y se considera que no hay ganancia, el vendedor es mayor de 65 años o va a reinvertir las ganancias en una nueva vivienda.</p>
+    {% else%}
+    <p>En este inmueble, el valor tributable es de {{ context.1.1|floatformat:"0"|intcomma }} Euros y, por lo tanto, el IRPF a pagar por el vendedor es de {{ context.1.0|floatformat:"0"|intcomma }} Euros.</p>
+    {% endifequal %}
+   
+
+
+</div>
+<a href="{% url 'calculator:gastos_vendedor' %}"><button type="button" class="btn btn-primary" >Calcular de nuevo</button></a> 
+</div>
+</div>
+
+{% endblock %}

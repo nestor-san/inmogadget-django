@@ -21,7 +21,7 @@
     incluyendo el IVA.
     {% endifequal %}
 </p>
-<p>El cliente recibirá la cantidad de {{ context.0|floatformat:"0"|intcomma }} €</p>
+<p class="alert alert-primary">El cliente recibirá la cantidad de {{ context.0|floatformat:"0"|intcomma }} €</p>
 <p>La comisión neta de la agencia es {{ context.1|floatformat:"0"|intcomma }} €</p>
 <p>El IVA de la operación es {{ context.2|floatformat:"0"|intcomma }} €</p>
 <p>La comisión de la agencia más IVA es {{ context.3|floatformat:"0"|intcomma }} €</p>
