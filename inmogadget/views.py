@@ -1,4 +1,6 @@
 from django.shortcuts import redirect
 
 def index(request):
-    return redirect('calculator:index')
+    response = redirect('calculator:index')
+    return response
+
